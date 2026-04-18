@@ -125,3 +125,19 @@
 .compared:hover {
   background-color: #3d6a4a;
 }
+
+@media (max-width: 480px) {
+  .imageContainer {
+    height: 200px;
+  }
+  .content {
+    padding: 1rem;
+  }
+  .stats {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .footer {
+    flex-direction: column;
+  }
+}

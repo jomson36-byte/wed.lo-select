@@ -142,3 +142,36 @@
 .excluded {
   color: var(--color-error);
 }
+
+@media (max-width: 768px) {
+  .overlay {
+    padding: 0;
+  }
+  .modal {
+    max-height: 100vh;
+    height: 100vh;
+    border-radius: 0;
+    transform: translateY(0);
+  }
+  .header {
+    padding: 1rem;
+  }
+  .title {
+    font-size: 1.25rem;
+  }
+  .content {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .th, .td {
+    padding: 1rem;
+    min-width: 250px; /* Ensure columns don't squish too much */
+  }
+  .rowLabel {
+    min-width: 120px;
+    width: 120px;
+  }
+  .venueHeader img {
+    height: 80px;
+  }
+}
