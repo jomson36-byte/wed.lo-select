@@ -22,6 +22,7 @@ export interface Venue {
   servicesIncluded: string[];
   servicesExcluded: string[];
   categorizedServices?: ServiceCategory[];
+  packageType?: 'Half Day' | 'Full Day' | string;
   contactInfo: string;
 }
 
@@ -184,16 +185,19 @@ export const mockVenues: Venue[] = [
   },
   {
     id: "venue-sync-13",
-    name: "Alut d’Amour (Salut d’ Amour)",
-    location: "รอดำเนินการ",
+    name: "Alut d'Amour",
+    location: "แขวงทวีวัฒนา, เขตทวีวัฒนา, กรุงเทพมหานคร",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "Perfectly Package Half Day (เช้า-เที่ยง หรือ บ่าย-เย็น) แพ็กเกจครบวงจรพร้อมทีมงาน Organizer",
+    packageType: "Half Day",
     images: ["https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800"],
     priceRange: { min: 199900, max: 199900, note: "Half Day Package" },
     capacity: { min: 100, max: 250 },
     servicesIncluded: [
       "สถานที่จัดงาน (เช้า-เที่ยง หรือ บ่าย-เย็น)",
-      "Coffee Break 50 ท่าน และ โต๊ะจีน Set A 100 ท่าน",
+      "Coffee Break 50 ท่าน และ โต๊ะจีน Set A 150 ท่าน (Free Upgrade จาก 100 ท่าน)",
+      "โปรโมชั่น: เลือกรับส่วนลด 8,000 บาท (หากไม่รับอัปเกรดอาหาร)",
+      "ส่วนลด On Top 10% สำหรับค่าอาหารส่วนเกิน (กรณีแขก 180 ท่านขึ้นไป)",
       "พิธีการ (ไทย/จีน/Vow) พร้อมอุปกรณ์ครบ",
       "วงดนตรี DUO BAND และเครื่องเสียงมาตรฐาน",
       "ทีมงาน Organizer (รันคิว, นายพิธี, พิธีกร)",
@@ -212,7 +216,13 @@ export const mockVenues: Venue[] = [
       },
       {
         category: "Catering",
-        items: ["Coffee Break 50 ท่าน", "โต๊ะจีน Set A 100 ท่าน", "Soft drink & น้ำแข็ง", "เจ้าหน้าที่บริการตลอดงาน"]
+        items: [
+          "Coffee Break 50 ท่าน", 
+          "โต๊ะจีน Set A 150 ท่าน (Free Upgrade!)", 
+          "ส่วนลด 10% อาหารส่วนเกิน (180+ ท่าน)",
+          "Soft drink & น้ำแข็ง", 
+          "เจ้าหน้าที่บริการตลอดงาน"
+        ]
       },
       {
         category: "Decoration",
@@ -300,6 +310,7 @@ export const mockVenues: Venue[] = [
     location: "พุทธมณฑลสาย 1, กรุงเทพมหานคร",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "Heart to Heart Morning Package (Oct - Mar) รองรับสูงสุด 200 ท่าน มี All Zone จัดงานและ Private Glasshouse สำหรับแต่งตัวและทำพิธี",
+    packageType: "Half Day (Morning)",
     images: ["https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800"],
     priceRange: { min: 279000, max: 299000, note: "Weekday 279k / Weekend 299k" },
     capacity: { min: 50, max: 200 },
@@ -363,6 +374,7 @@ export const mockVenues: Venue[] = [
     location: "ซ.ประเสริฐมนูกิจ 33, นวลจันทร์, บึงกุ่ม, กรุงเทพ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "Quotation สำหรับแขก 200 ท่าน + พิธีเช้า (High Season) พื้นที่สวน Garden Zone",
+    packageType: "Half Day (Morning + Party)",
     images: ["https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800"],
     priceRange: { min: 287100, max: 287100, note: "Net Price (Incl. VAT & Service Charge)" },
     capacity: { min: 120, max: 200 },

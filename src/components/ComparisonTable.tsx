@@ -79,6 +79,14 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({ venues }) => {
               ))}
             </tr>
             <tr>
+              <td className={`${styles.td} ${styles.rowLabel}`}>ประเภทแพ็กเกจ</td>
+              {filteredVenues.map(venue => (
+                <td key={venue.id} className={styles.td}>
+                  {venue.packageType || "N/A"}
+                </td>
+              ))}
+            </tr>
+            <tr>
               <td className={`${styles.td} ${styles.rowLabel}`}>ความจุ (Pax)</td>
               {filteredVenues.map(venue => (
                 <td key={venue.id} className={styles.td}>
