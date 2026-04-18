@@ -73,6 +73,50 @@
   color: var(--color-primary-dark);
 }
 
+.optionPicker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.9rem;
+  text-align: left;
+}
+
+.optionLabel {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.optionSelect {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-main);
+  color: var(--color-text-main);
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+}
+
+.optionSummary {
+  font-size: 0.8rem;
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+
+.optionDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.optionDetail strong {
+  color: var(--color-primary-dark);
+}
+
+.optionDetail span {
+  font-size: 0.9rem;
+}
+
 .list {
   list-style: none;
   padding: 0;
