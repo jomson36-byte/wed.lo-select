@@ -1,82 +1,16 @@
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 2rem;
-  opacity: 0;
-  animation: fadeIn 0.3s forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-.modal {
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
   background-color: var(--color-bg-card);
   border-radius: var(--radius-lg);
-  width: 100%;
-  max-width: 1200px;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
   box-shadow: var(--shadow-lg);
-  overflow: hidden;
-  transform: translateY(20px);
-  animation: slideUp 0.3s forwards;
-}
-
-@keyframes slideUp {
-  to { transform: translateY(0); }
-}
-
-.header {
-  padding: 1.5rem 2rem;
-  border-bottom: 1px solid var(--color-border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-primary-dark);
-}
-
-.closeBtn {
-  background: none;
-  border: none;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.closeBtn:hover {
-  background-color: var(--color-bg-subtle);
-  color: var(--color-text-main);
-}
-
-.content {
-  padding: 0;
-  overflow-y: auto;
-  flex-grow: 1;
+  -webkit-overflow-scrolling: touch;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 800px; /* Ensure a minimum width for comparison */
 }
 
 .th, .td {
@@ -97,28 +31,19 @@
   width: 200px;
   position: sticky;
   left: 0;
-  z-index: 1;
+  z-index: 10;
 }
 
 .venueHeader {
   text-align: center;
   background-color: var(--color-bg-card);
-  position: sticky;
-  top: 0;
-  z-index: 2;
-}
-
-.venueHeader img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: var(--radius-sm);
-  margin-bottom: 1rem;
+  min-width: 300px;
 }
 
 .venueName {
   font-size: 1.1rem;
   font-weight: 600;
+  color: var(--color-primary-dark);
 }
 
 .list {
@@ -143,35 +68,66 @@
   color: var(--color-error);
 }
 
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.priceNote {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+}
+
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  margin-bottom: 0 !important;
+}
+
+.imageWrapper:hover img {
+  transform: scale(1.05);
+}
+
+.na {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
 @media (max-width: 768px) {
-  .overlay {
-    padding: 0;
-  }
-  .modal {
-    max-height: 100vh;
-    height: 100vh;
-    border-radius: 0;
-    transform: translateY(0);
-  }
-  .header {
-    padding: 1rem;
-  }
-  .title {
-    font-size: 1.25rem;
-  }
-  .content {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  .tableWrapper {
+    border-radius: var(--radius-md);
   }
   .th, .td {
     padding: 1rem;
-    min-width: 250px; /* Ensure columns don't squish too much */
+    min-width: 250px;
   }
   .rowLabel {
     min-width: 120px;
     width: 120px;
+    font-size: 0.85rem;
   }
-  .venueHeader img {
+  .imageWrapper {
     height: 80px;
   }
 }

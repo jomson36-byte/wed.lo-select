@@ -23,87 +23,18 @@
   gap: 2rem;
 }
 
-.floatingBar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--color-bg-card);
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 100;
-  transform: translateY(100%);
-  transition: transform var(--transition-normal);
-}
-
-.floatingBarVisible {
-  transform: translateY(0);
-}
-
-.compareInfo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.compareCount {
-  font-weight: 600;
-  color: var(--color-primary-dark);
-}
-
-.compareAvatars {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--color-primary-light);
-}
-
-.clearBtn {
+.footer {
+  text-align: center;
+  padding: 3rem 0;
   color: var(--color-text-muted);
   font-size: 0.9rem;
-  text-decoration: underline;
-}
-
-.clearBtn:hover {
-  color: var(--color-error);
+  border-top: 1px solid var(--color-border);
+  margin-top: 4rem;
 }
 
 @media (max-width: 768px) {
   .header {
     padding: 2.5rem 1rem;
     margin-bottom: 1.5rem;
-  }
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .floatingBar {
-    padding: 0.75rem 1rem;
-  }
-  .floatingBar > div {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  .compareInfo {
-    width: 100%;
-    justify-content: space-between;
-  }
-  .compareAvatars {
-    display: none; /* Hide avatars on very small screens to save space */
-  }
-  .floatingBar button.btn-primary {
-    width: 100%;
   }
 }
