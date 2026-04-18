@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2, XCircle, Info } from 'lucide-react';
+import { CheckCircle2, XCircle, Info, FileText } from 'lucide-react';
 import styles from './ComparisonTable.module.css';
 import type { Venue, VenueOption } from '../data/mockVenues';
 
@@ -30,6 +30,24 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({ venues }) => {
     return venue.options.find((option) => option.id === selectedOptionId) ?? venue.options[0];
   };
 
+  const mergeCategories = (
+    baseCategories: Venue['categorizedServices'],
+    optionCategories: VenueOption['categorizedServices']
+  ) => {
+    const merged = new Map<string, string[]>();
+
+    for (const category of baseCategories ?? []) {
+      merged.set(category.category, [...category.items]);
+    }
+
+    for (const category of optionCategories ?? []) {
+      const currentItems = merged.get(category.category) ?? [];
+      merged.set(category.category, Array.from(new Set([...currentItems, ...category.items])));
+    }
+
+    return Array.from(merged.entries()).map(([category, items]) => ({ category, items }));
+  };
+
   const getVenueView = (venue: Venue) => {
     const option = getSelectedOption(venue);
 
@@ -39,18 +57,22 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({ venues }) => {
       packageType: option?.packageType ?? venue.packageType,
       priceRange: option?.priceRange ?? venue.priceRange,
       capacity: option?.capacity ?? venue.capacity,
-      servicesIncluded: option?.servicesIncluded ?? venue.servicesIncluded,
-      servicesExcluded: option?.servicesExcluded ?? venue.servicesExcluded,
-      categorizedServices: option?.categorizedServices ?? venue.categorizedServices,
+      servicesIncluded: Array.from(new Set([...(venue.servicesIncluded ?? []), ...(option?.servicesIncluded ?? [])])),
+      servicesExcluded: Array.from(new Set([...(venue.servicesExcluded ?? []), ...(option?.servicesExcluded ?? [])])),
+      categorizedServices: mergeCategories(venue.categorizedServices, option?.categorizedServices),
       selectedOptionLabel: option?.label,
     };
   };
 
+  const hasDetailedData = (venue: Venue) => {
+    return venue.status === "ได้รับข้อมูล";
+  };
+
   // Filter venues based on whether they have detailed service data
-  // We consider it "incomplete" if it doesn't have categorizedServices or is marked as "รอดำเนินการ"
+  // We consider it "complete" when the rendered venue data has detailed sections and a real location.
   const filteredVenues = showIncomplete 
     ? venues 
-    : venues.filter(v => v.categorizedServices && v.categorizedServices.length > 0 && v.location !== "รอดำเนินการ");
+    : venues.filter(hasDetailedData);
 
   const venueViews = filteredVenues.map(getVenueView);
 
@@ -83,15 +105,30 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({ venues }) => {
 
                 return (
                 <th key={venue.id} className={`${styles.th} ${styles.venueHeader}`}>
+                  <div className={styles.venueName}>{venue.name}</div>
+                </th>
+              )})}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className={`${styles.td} ${styles.rowLabel}`}>รูปภาพสถานที่</td>
+              {venueViews.map(venue => (
+                <td key={venue.id} className={styles.td}>
                   <div className={styles.imageWrapper}>
                     <img src={venue.images[0]} alt={venue.name} />
                   </div>
-                  <div className={styles.venueName}>{venue.name}</div>
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <td className={`${styles.td} ${styles.rowLabel}`}>เลือกแพ็กเกจย่อย</td>
+              {filteredVenues.map(venue => {
+                const venueView = getVenueView(venue);
+                return (
+                <td key={venue.id} className={styles.td}>
                   {venue.options?.length ? (
                     <div className={styles.optionPicker}>
-                      <label htmlFor={`option-${venue.id}`} className={styles.optionLabel}>
-                        เลือก Option
-                      </label>
                       <select
                         id={`option-${venue.id}`}
                         className={styles.optionSelect}
@@ -113,12 +150,32 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({ venues }) => {
                         <div className={styles.optionSummary}>{venueView.selectedOptionLabel}</div>
                       ) : null}
                     </div>
-                  ) : null}
-                </th>
+                  ) : (
+                    <span className={styles.na}>มีแพ็กเกจเดียว</span>
+                  )}
+                </td>
               )})}
             </tr>
-          </thead>
-          <tbody>
+            <tr>
+              <td className={`${styles.td} ${styles.rowLabel}`}>ไฟล์ข้อมูลต้นฉบับ</td>
+              {venueViews.map(venue => (
+                <td key={venue.id} className={styles.td}>
+                  {venue.rawPackageUrl ? (
+                    <a 
+                      href={venue.rawPackageUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className={styles.rawPackageBtn}
+                    >
+                      <FileText size={14} />
+                      <span>เปิดโบรชัวร์ต้นฉบับ</span>
+                    </a>
+                  ) : (
+                    <span className={styles.na}>ไม่มีข้อมูล</span>
+                  )}
+                </td>
+              ))}
+            </tr>
             <tr>
               <td className={`${styles.td} ${styles.rowLabel}`}>ราคาแพ็กเกจ</td>
               {venueViews.map(venue => (
@@ -167,6 +224,21 @@ export const ComparisonTable: React.FC<ComparisonTableProps> = ({ venues }) => {
                     ? `${venue.capacity.min} ท่าน`
                     : `${venue.capacity.min} - ${venue.capacity.max} ท่าน`
                   }
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <td className={`${styles.td} ${styles.rowLabel}`}>ไฮไลต์แพ็กเกจ</td>
+              {venueViews.map(venue => (
+                <td key={venue.id} className={styles.td}>
+                  <ul className={styles.list}>
+                    {venue.servicesIncluded.slice(0, 6).map((service, i) => (
+                      <li key={i} className={styles.listItem}>
+                        <CheckCircle2 size={16} className={styles.included} />
+                        <span>{service}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </td>
               ))}
             </tr>

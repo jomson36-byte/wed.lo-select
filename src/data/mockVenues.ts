@@ -41,12 +41,15 @@ export interface Venue {
   packageType?: 'Half Day' | 'Full Day' | string;
   options?: VenueOption[];
   contactInfo: string;
+  status: 'ได้รับข้อมูล' | 'รอดำเนินการ';
+  rawPackageUrl?: string;
 }
 
 export const mockVenues: Venue[] = [
   {
     id: "venue-sync-1",
     name: "Celebce Venue",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -60,6 +63,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-2",
     name: "Oyard",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -73,6 +77,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-3",
     name: "The Petal Garden & Studio",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -86,6 +91,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-4",
     name: "วาระเวลา การ์เด้น ฮอลล์",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -99,6 +105,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-5",
     name: "อากาเป้ การ์เด้น",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -112,6 +119,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-6",
     name: "found venue",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -125,6 +133,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-7",
     name: "The Tall Trees",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -138,6 +147,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-8",
     name: "Inwood Garden",
+    status: "ได้รับข้อมูล",
     location: "Inwood Garden",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สวนจัดงานแต่งที่มีหลายโซนให้เลือกทั้ง Indoor, Garden, Waterfront และ All Area รองรับงานเต็มวันหรือครึ่งวัน",
@@ -363,11 +373,13 @@ export const mockVenues: Venue[] = [
         ]
       }
     ],
-    contactInfo: "+66 65 239 8935 / inwood.garden.th@gmail.com"
+    contactInfo: "+66 65 239 8935 / inwood.garden.th@gmail.com",
+    rawPackageUrl: "/packages/inwood-garden/package.pdf"
   },
   {
     id: "venue-sync-9",
     name: "The Botanical House Bangkok",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -381,6 +393,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-10",
     name: "Rylyn Garden",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -393,20 +406,281 @@ export const mockVenues: Venue[] = [
   },
   {
     id: "venue-sync-11",
-    name: "Silooet House",
-    location: "รอดำเนินการ",
+    name: "Silooet House (siloo'et)",
+    status: "ได้รับข้อมูล",
+    location: "Siloo'et Venue",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
-    description: "สถานที่จาก Google Maps List",
+    description: "Wedding venue และแพ็กเกจแต่งงานครบชุด รองรับทั้ง reception, ceremony และ venue rental แบบ half day / all day",
+    packageType: "Wedding Package / Venue Rental",
     images: ["https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800"],
-    priceRange: { min: 100000, max: 300000 },
-    capacity: { min: 50, max: 200 },
-    servicesIncluded: ["สถานที่จัดงาน"],
-    servicesExcluded: ["อาหารและเครื่องดื่ม"],
-    contactInfo: "N/A"
+    priceRange: {
+      min: 120000,
+      max: 550000,
+      note: "มีหลายแพ็กเกจตั้งแต่ Venue Rental 120,000 บาท ถึง Wedding Ceremony (All Day) 550,000 บาท"
+    },
+    capacity: { min: 80, max: 300 },
+    servicesIncluded: [
+      "มีแพ็กเกจ Reception, Wedding Ceremony (Half Day / All Day) และ Venue Rental",
+      "รวมสถานที่ ตกแต่ง อาหารและทีมบริการตามแพ็กเกจ",
+      "Venue เปิดให้เข้าเตรียมตัวล่วงหน้า 2 ชั่วโมงโดยไม่คิดค่าใช้จ่าย",
+      "มี Organizer, MC และทีมสนับสนุนในแพ็กเกจหลัก"
+    ],
+    servicesExcluded: [
+      "Bring in Flower and Decoration 30,000 บาท (+20,000 dps)",
+      "Bring in Catering 30,000 บาท",
+      "Bring in Food station 10,000 บาท/สถานี/รายการ",
+      "Bring in Lighting 15,000 บาท (รวม generator)",
+      "Bring in Music band 8,000 บาท",
+      "Bring in Photobooth 3,000 บาท",
+      "Corkage charge 5,000 บาท/ประเภท",
+      "Mixer charge 500 บาท/ขวดแอลกอฮอล์",
+      "Extra hours 20,000 บาท/ชั่วโมง"
+    ],
+    categorizedServices: [
+      {
+        category: "Equipment",
+        items: [
+          "Engagement Sofa Set",
+          "150 Cross back Chair",
+          "6 Round tables",
+          "10 High stool tables",
+          "2 Microphones",
+          "Standard sound system (JBL)"
+        ]
+      },
+      {
+        category: "Decoration",
+        items: [
+          "Welcome Board",
+          "Initial logo",
+          "Envelope box",
+          "Greeting book",
+          "Flower stands",
+          "Corsage",
+          "Bouquet",
+          "Champagne Tower"
+        ]
+      },
+      {
+        category: "Staff & Organizer",
+        items: [
+          "Organizer team & MC",
+          "Event manager & Supporting team",
+          "Technical staff",
+          "Cleaning Staff",
+          "Security"
+        ]
+      },
+      {
+        category: "Venue & Facilities",
+        items: [
+          "Avenue",
+          "Lightbrary / Skylight / Glasshouse / Outdoor",
+          "Dress room for bride & groom",
+          "Restroom & Wheelchair restroom"
+        ]
+      },
+      {
+        category: "Catering",
+        items: [
+          "Reception: Lunch/Dinner 4 Food Stations + 3 Soft Drinks & Water (100 Guests)",
+          "Half Day Ceremony: Coffee Break 50 Guests + Lunch/Dinner 100 Guests",
+          "All Day Ceremony: Coffee Break 50 Guests + Lunch 80 Guests + Dinner 100 Guests"
+        ]
+      }
+    ],
+    options: [
+      {
+        id: "reception-package",
+        label: "Reception Package",
+        description: "แพ็กเกจงานเลี้ยง Lunch หรือ Dinner สำหรับแขก 100 ท่าน",
+        packageType: "Reception",
+        priceRange: { min: 350000, max: 350000, note: "4 ชั่วโมง 10:00-14:00 หรือ 18:00-22:00 / 100 Guests" },
+        capacity: { min: 100, max: 100 },
+        categorizedServices: [
+          {
+            category: "Catering",
+            items: [
+              "Lunch / Dinner",
+              "4 Food Stations",
+              "3 Soft Drinks & Water",
+              "Additional guest 890 บาท/ท่าน"
+            ]
+          },
+          {
+            category: "Decoration",
+            items: [
+              "Welcome Board",
+              "Initial logo",
+              "Registration desk",
+              "Envelope box",
+              "Greeting book",
+              "Flower stands",
+              "Corsage",
+              "Bouquet",
+              "Confetti",
+              "Champagne tower"
+            ]
+          },
+          {
+            category: "Staff & Organizer",
+            items: [
+              "Organizer team & MC",
+              "Event manager & Supporting team",
+              "Technical staff",
+              "Cleaning Staff",
+              "Security"
+            ]
+          }
+        ]
+      },
+      {
+        id: "ceremony-half-day",
+        label: "Wedding Ceremony (Half Day)",
+        description: "แพ็กเกจพิธีแต่งงานครึ่งวัน 7 ชั่วโมง เลือกเช้าถึงบ่ายหรือบ่ายถึงเย็น",
+        packageType: "Wedding Ceremony (Half Day)",
+        priceRange: { min: 450000, max: 450000, note: "07:00-14:00 หรือ 15:00-22:00 / 100 Guests" },
+        capacity: { min: 100, max: 100 },
+        categorizedServices: [
+          {
+            category: "Ceremony",
+            items: [
+              "Thai Set หรือ Chinese Set สำหรับพิธีหมั้น",
+              "Chinese Tea Ceremony",
+              "Thai Water Blessing Ceremony",
+              "Vow Ceremony",
+              "Monk Ceremony เพิ่ม 30,000 บาท / ตักบาตรเพิ่ม 15,000 บาท / Christian Vow เพิ่ม 25,000 บาท"
+            ]
+          },
+          {
+            category: "Catering",
+            items: [
+              "Coffee Break 50 Guests",
+              "3 Coffee Break + 1 Pork boiled rice",
+              "Coffee + Tea + Water",
+              "Lunch / Dinner 100 Guests",
+              "3 Food Stations",
+              "3 Soft Drinks & Water",
+              "Additional guest 350 บาท (coffee break) / 890 บาท (meal)"
+            ]
+          },
+          {
+            category: "Equipment",
+            items: [
+              "Engagement Sofa Set",
+              "150 Cross back Chair",
+              "6 Round tables",
+              "10 High stool tables",
+              "2 Microphones",
+              "Standard sound system (JBL)"
+            ]
+          }
+        ]
+      },
+      {
+        id: "ceremony-all-day",
+        label: "Wedding Ceremony (All Day)",
+        description: "แพ็กเกจพิธีแต่งงานเต็มวัน รวม Lunch และ Dinner",
+        packageType: "Wedding Ceremony (All Day)",
+        priceRange: { min: 550000, max: 550000, note: "All day 07:00-12:00 and 18:00-22:00 / 80-100 Guests" },
+        capacity: { min: 80, max: 100 },
+        categorizedServices: [
+          {
+            category: "Ceremony",
+            items: [
+              "Thai Set หรือ Chinese Set สำหรับพิธีหมั้น",
+              "Chinese Tea Ceremony",
+              "Thai Water Blessing Ceremony",
+              "Vow Ceremony",
+              "Monk Ceremony เพิ่ม 30,000 บาท / ตักบาตรเพิ่ม 15,000 บาท / Christian Vow เพิ่ม 25,000 บาท"
+            ]
+          },
+          {
+            category: "Catering",
+            items: [
+              "Coffee Break 50 Guests",
+              "Lunch 80 Guests",
+              "3 Food Stations",
+              "3 Soft Drinks & Water",
+              "Dinner 100 Guests",
+              "4 Food Stations",
+              "3 Soft Drinks & Water",
+              "Additional guest 350 บาท (coffee break) / 890 บาท (meal)"
+            ]
+          },
+          {
+            category: "Staff & Organizer",
+            items: [
+              "Organizer team & MC",
+              "Event manager & Supporting team",
+              "Technical staff",
+              "Cleaning Staff",
+              "Security"
+            ]
+          }
+        ]
+      },
+      {
+        id: "venue-rental-half-day",
+        label: "Venue Rental (Half Day)",
+        description: "ค่าเช่าสถานที่แบบ All Area ครึ่งวัน แยกราคาวันธรรมดาและเสาร์อาทิตย์",
+        packageType: "Venue Rental (Half Day)",
+        priceRange: { min: 120000, max: 150000, note: "Mon-Fri 120,000 บาท / Sat-Sun 150,000 บาท / 06:00-13:00 หรือ 15:00-22:00" },
+        capacity: { min: 180, max: 300 },
+        categorizedServices: [
+          {
+            category: "Venue & Facilities",
+            items: [
+              "All Area",
+              "8 Round Dining tables",
+              "150 Cross back Chair",
+              "20 Standing cocktail tables",
+              "2 Microphones / Standard sound system",
+              "Bride & Groom Dressing Room"
+            ]
+          },
+          {
+            category: "Restrictions",
+            items: [
+              "Minimum spend 200,000 บาท สำหรับ Half Day event"
+            ]
+          }
+        ]
+      },
+      {
+        id: "venue-rental-full-day",
+        label: "Venue Rental (Full Day)",
+        description: "ค่าเช่าสถานที่แบบ All Area เต็มวัน แยกราคาวันธรรมดาและเสาร์อาทิตย์",
+        packageType: "Venue Rental (Full Day)",
+        priceRange: { min: 180000, max: 220000, note: "Mon-Fri 180,000 บาท / Sat-Sun 220,000 บาท / 06:00-22:00" },
+        capacity: { min: 180, max: 300 },
+        categorizedServices: [
+          {
+            category: "Venue & Facilities",
+            items: [
+              "All Area",
+              "8 Round Dining tables",
+              "150 Cross back Chair",
+              "20 Standing cocktail tables",
+              "2 Microphones / Standard sound system",
+              "Bride & Groom Dressing Room"
+            ]
+          },
+          {
+            category: "Restrictions",
+            items: [
+              "Minimum spend 300,000 บาท สำหรับ Full Day event"
+            ]
+          }
+        ]
+      }
+    ],
+    contactInfo: "Line: @silooet / โทร 064-665-5699"
   },
   {
     id: "venue-sync-12",
     name: "Bua garden backyard cafe & studio",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -420,6 +694,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-13",
     name: "Alut d'Amour",
+    status: "ได้รับข้อมูล",
     location: "แขวงทวีวัฒนา, เขตทวีวัฒนา, กรุงเทพมหานคร",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "Perfectly Package Half Day (เช้า-เที่ยง หรือ บ่าย-เย็น) แพ็กเกจครบวงจรพร้อมทีมงาน Organizer",
@@ -476,6 +751,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-14",
     name: "บาร์น คลองสวน",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -489,6 +765,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-15",
     name: "La novia studio",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -502,19 +779,92 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-16",
     name: "PASADOKMAI GARDEN & CAFE",
-    location: "รอดำเนินการ",
-    googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
-    description: "สถานที่จาก Google Maps List",
+    status: "ได้รับข้อมูล",
+    location: "ต.บางเมือง อ.เมือง จ.สมุทรปราการ",
+    googleMapsUrl: "https://maps.app.goo.gl/search/Pasadokmai+garden+%26+cafe",
+    description: "แพ็กเกจงานพิธีเช้าเลี้ยงเที่ยง (Morning & Lunch Session) 07.00 - 14.00 ครบวงจรพร้อมทีมงาน Organizer และการตกแต่งสถานที่",
+    packageType: "Half Day (Morning & Lunch)",
     images: ["https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800"],
-    priceRange: { min: 100000, max: 300000 },
+    priceRange: { 
+      min: 229000, 
+      max: 229000, 
+      note: "สำหรับแขก 100 ท่าน; ส่วนเกินท่านละ 700 บาท; ต่ำกว่า 100 ท่านแจ้งจำนวนได้" 
+    },
     capacity: { min: 50, max: 200 },
-    servicesIncluded: ["สถานที่จัดงาน"],
-    servicesExcluded: ["อาหารและเครื่องดื่ม"],
-    contactInfo: "N/A"
+    servicesIncluded: [
+      "สถานที่จัดงาน (07.00 - 14.00)",
+      "อาหารบุฟเฟต์/ค็อกเทล/โต๊ะจีน สำหรับ 100 ท่าน",
+      "อาหารว่างมื้อเช้า สำหรับ 50 ท่าน",
+      "พิธีกรและทีมรันคิว 3 ท่าน",
+      "งานตกแต่งสถานที่ (Backdrop พิธีการ + ถ่ายรูป)",
+      "ระบบเครื่องเสียงมาตรฐาน",
+      "เค้กจริง 3 ปอนด์ (หรือรินแชมเปญ/รดน้ำต้นไม้/โดนัท)",
+      "ฟรีค่าเปิดสถานที่เตรียมตัวล่วงหน้า 3 ชั่วโมง"
+    ],
+    servicesExcluded: [
+      "นิมนต์พระสงฆ์",
+      "ภัตตาหารพระสงฆ์ และสังฆทาน",
+      "ชุดแต่งงานเจ้าบ่าว-เจ้าสาว",
+      "ช่างแต่งหน้าทำผม",
+      "ช่างภาพและช่างวิดีโอ",
+      "ของชำร่วย และของรับไหว้",
+      "Extra hour 10,000 บาท/ชั่วโมง"
+    ],
+    categorizedServices: [
+      {
+        category: "Ceremony",
+        items: [
+          "พิธีปูเรียงสินสอด / สวมแหวนหมั้น",
+          "พิธีไหว้ผู้ใหญ่ (ผูกข้อมือ/ยกน้ำชา)",
+          "พิธีหลั่งน้ำพระพุทธมนต์ (ครบเซต)",
+          "อุปกรณ์สำหรับใช้ในพิธีครบชุด",
+          "พวงมาลัยสำหรับบ่าวสาว"
+        ]
+      },
+      {
+        category: "Catering",
+        items: [
+          "อาหารหลักสำหรับ 100 ท่าน (เลือก Buffet/Cocktail/โต๊ะจีน)",
+          "บุฟเฟต์: คาว 7 รายการ + ขนม 1 + เครื่องดื่ม 1 + น้ำแข็ง",
+          "โต๊ะจีน: อาหาร 9 อย่าง + เครื่องดื่มอัดลม + น้ำแข็ง",
+          "ของว่างเช้า: อาหารเบรค + น้ำเปล่า/กาแฟซอง (50 ท่าน)",
+          "จัดเตรียมภาชนะ อุปกรณ์การทานครบชุด"
+        ]
+      },
+      {
+        category: "Decoration",
+        items: [
+          "Backdrop พิธีการ และ Backdrop ถ่ายรูป",
+          "Gallery ขาตั้งรูป 6 ขา (ลูกค้าเตรียมรูปมาเอง)",
+          "โต๊ะลงทะเบียน, กล่องใส่ซอง, ชั้นวางของชำร่วย",
+          "ตกแต่งแจกันดอกไม้หรือพุ่มดอกไม้",
+          "เค้กจริง 3 ปอนด์ หรือทางเลือกอื่นๆ"
+        ]
+      },
+      {
+        category: "Staff & Organizer",
+        items: [
+          "พิธีกรและผู้ดูแลงานพิธี (รันคิว) 3 ท่าน",
+          "เจ้าหน้าที่ดูแลความเรียบร้อยและแม่บ้าน",
+          "เจ้าหน้าที่โบกรถดูแลความสะดวก"
+        ]
+      },
+      {
+        category: "Venue & Facilities",
+        items: [
+          "Venue Opens for preparation 3 hours before",
+          "เครื่องเสียงมาตรฐานพร้อมคนควบคุม",
+          "โต๊ะเก้าอี้ Long Table หรือโต๊ะกลม สำหรับ 100 ท่าน",
+          "ที่จอดรถสะดวกสบาย"
+        ]
+      }
+    ],
+    contactInfo: "094-494-0171 / Pasadokmai Garden & Cafe"
   },
   {
     id: "venue-sync-17",
     name: "ริน แอท เรนทรี",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -528,6 +878,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-18",
     name: "The Crystal Studio เดอะ คริสตัล สตูดิโอ",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -541,6 +892,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-19",
     name: "ร้านอาหาร Take a Breath cafe & eatery",
+    status: "ได้รับข้อมูล",
     location: "พุทธมณฑลสาย 1, กรุงเทพมหานคร",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "Heart to Heart Morning Package (Oct - Mar) รองรับสูงสุด 200 ท่าน มี All Zone จัดงานและ Private Glasshouse สำหรับแต่งตัวและทำพิธี",
@@ -592,6 +944,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sync-20",
     name: "Bloom Forest axis",
+    status: "รอดำเนินการ",
     location: "รอดำเนินการ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "สถานที่จาก Google Maps List",
@@ -605,6 +958,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-mellow-garden",
     name: "Mellow Garden",
+    status: "ได้รับข้อมูล",
     location: "ซ.ประเสริฐมนูกิจ 33, นวลจันทร์, บึงกุ่ม, กรุงเทพ",
     googleMapsUrl: "https://maps.app.goo.gl/aKp6xBToWFcq9Sj5A",
     description: "Quotation สำหรับแขก 200 ท่าน + พิธีเช้า (High Season) พื้นที่สวน Garden Zone",
@@ -654,6 +1008,7 @@ export const mockVenues: Venue[] = [
   {
     id: "venue-sherlyn",
     name: "SHERLYN",
+    status: "ได้รับข้อมูล",
     location: "ยังไม่ระบุในโบรชัวร์",
     googleMapsUrl: "https://www.levivaxsherlyn.com/SHERLYN/67089eb22e569c001388aad3",
     description: "Full Package Promotion สำหรับงานหมั้นเช้าเลี้ยงเที่ยง หรือหมั้นบ่ายเลี้ยงเย็น รวมพิธีเช้า งานเลี้ยง และงานตกแต่งครบชุด",
@@ -746,6 +1101,7 @@ export const mockVenues: Venue[] = [
         ]
       }
     ],
-    contactInfo: "Line: @508eshrv / โทร 084-426-353"
+    contactInfo: "Line: @508eshrv / โทร 084-426-353",
+    rawPackageUrl: "/packages/sherlyn/package.pdf"
   }
 ];
