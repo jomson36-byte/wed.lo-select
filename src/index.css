@@ -88,6 +88,12 @@ a:hover {
   padding: 0 1.5rem;
 }
 
+.container-full {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
 /* Premium Buttons */
 .btn {
   display: inline-flex;

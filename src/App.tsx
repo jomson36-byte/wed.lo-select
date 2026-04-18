@@ -18,7 +18,7 @@ function App() {
       </header>
 
       <main className={styles.main}>
-        <div className="container">
+        <div className="container-full">
           <ComparisonTable venues={venuesToDisplay} />
         </div>
       </main>
